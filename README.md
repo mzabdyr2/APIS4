@@ -42,6 +42,41 @@ pip install -r requirements.txt
 5. Zadaj pytania testowe i zapisz odpowiedzi.
 6. Uzupełnij `report/sprawozdanie.md` wynikami i wyeksportuj do PDF.
 
+## Opcjonalnie: generowanie odpowiedzi przez Ollamę
+
+Projekt może działać bez płatnego API. Jeśli masz Ollamę na laptopie, uruchom ją
+lokalnie i pobierz wybrany model:
+
+```bash
+ollama serve
+ollama pull llama3.1:8b
+```
+
+W notebooku możesz wtedy podłączyć lokalny model jako generator:
+
+```python
+from src import ollama_generate
+
+result = rag.answer(
+    "How can GIS be used to measure accessibility in the 15-minute city?",
+    generator=lambda prompt: ollama_generate(
+        prompt,
+        model="llama3.1:8b",
+        temperature=0.1,
+    ),
+)
+
+print(result.answer)
+```
+
+Jeżeli Twój laptop jest słabszy, rozważ mniejszy model, np.:
+
+```bash
+ollama pull llama3.2:3b
+```
+
+Wtedy w kodzie zmień `model="llama3.2:3b"`.
+
 ## Dlaczego FAISS i all-MiniLM-L6-v2?
 
 - `sentence-transformers/all-MiniLM-L6-v2` jest lekki, darmowy i działa lokalnie.
