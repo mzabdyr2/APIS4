@@ -108,6 +108,13 @@ Answer the user's question using only the provided context.
 If the context is insufficient, say that the documents do not provide enough evidence.
 ```
 
+Do generowania finalnej odpowiedzi można wykorzystać lokalny model językowy
+uruchomiony przez Ollamę, np. `llama3.1:8b`. Takie rozwiązanie nie wymaga
+płatnego API, a jednocześnie pozwala oddzielić dwie części systemu:
+
+- retrieval, czyli wyszukiwanie fragmentów publikacji,
+- generation, czyli wygenerowanie odpowiedzi na podstawie znalezionego kontekstu.
+
 ## 5. Ewaluacja odpowiedzi
 
 W projekcie przewidziano kilka poziomów ewaluacji:
